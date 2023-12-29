@@ -38,6 +38,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 48px;
+    min-height: 80vh;
 }
 
 .home-section {

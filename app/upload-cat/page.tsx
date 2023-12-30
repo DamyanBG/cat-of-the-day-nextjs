@@ -14,10 +14,6 @@ interface CatInfo {
     breed: string;
 }
 
-interface CatPostData extends CatInfo {
-    uploader_pk: number | undefined;
-}
-
 const initialCatInfoState: CatInfo = {
     name: "",
     passport_id: "",
@@ -39,13 +35,9 @@ export default function UploadCat() {
 
     const postCat = () => {
         setIsUploading(true);
-        const catPostData: CatPostData = {
-            ...catInfo,
-            uploader_pk: user.user_pk,
-        };
         fetch(`${HOST_URL}/cat`, {
             method: "POST",
-            body: JSON.stringify(catPostData),
+            body: JSON.stringify(catInfo),
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${user.token}`,

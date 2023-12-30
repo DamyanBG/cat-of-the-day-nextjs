@@ -47,7 +47,7 @@ header nav a::before {
     width: 0;
     height: 2px;
     background: #fff;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 header nav a:hover::before {
@@ -135,4 +135,47 @@ footer section p {
 
 .footer-text {
     margin-top: 12px;
+}
+
+.vote-section {
+    width: 80vw;
+}
+
+.vote-section img {
+    width: 100%;
+}
+
+.vote-section article {
+    margin-top: 30px;
+}
+
+.vote-section article button {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100px;
+    height: 40px;
+    font-size: 24px;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.vote-section article button:active {
+    height: 38px;
+    width: 96px;
+    margin-left: 22px;
+    margin-right: 22px;
+}
+
+.vote-section article button:first-child {
+    background-color: rgb(63 39 209);
+}
+
+.vote-section article button:nth-child(2) {
+    background-color: #168140;
+}
+
+.vote-section article button:nth-child(3) {
+    background-color: #db2e0a;
 }

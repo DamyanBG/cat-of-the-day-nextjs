@@ -11,7 +11,6 @@ interface RegisterInfo {
     last_name: string;
     email: string;
     password: string;
-    as_participant?: boolean;
 }
 
 const initialRegisterState: RegisterInfo = {
@@ -19,11 +18,7 @@ const initialRegisterState: RegisterInfo = {
     last_name: "",
     email: "",
     password: "",
-    as_participant: false,
 };
-
-const PARTICIPANT_PATH = "/uploader/register";
-const VOTER_PATH = "/voter/register";
 
 const EMAIL_REGEX: RegExp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const PASSWORD_REGEX: RegExp = /^(?=.*\d)(?=.*[A-Z]).{6,}$/;
@@ -44,9 +39,7 @@ export default function Register() {
     const router = useRouter();
 
     const postUser = (values: RegisterInfo) => {
-        const path = values.as_participant ? PARTICIPANT_PATH : VOTER_PATH;
-        delete values.as_participant;
-        fetch(`${HOST_URL}${path}`, {
+        fetch(`${HOST_URL}/user/register`, {
             method: "POST",
             body: JSON.stringify(values),
             headers: {
@@ -147,15 +140,6 @@ export default function Register() {
                                         {errors?.password}
                                     </p>
                                 )}
-                            </article>
-
-                            <label>Register as participant</label>
-                            <article>
-                                <Field
-                                    name="as_participant"
-                                    component="input"
-                                    type="checkbox"
-                                />
                             </article>
 
                             <button

@@ -16,10 +16,10 @@ const CatOfTheDayComponent = () => {
     useEffect(getCatOfTheDayPhoto, []);
 
     return (
-        <article>
-            <h2>Cat of the day!</h2>
-            <article className="image-container"><img src={photoUrl} alt="Cat of the day!" /></article>
-        </article>
+        
+        <img src={photoUrl} alt="Cat of the day!" />
+
+        // <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1920px-Cat_August_2010-4.jpg" alt="Cat of the day!" />
     );
 };
 

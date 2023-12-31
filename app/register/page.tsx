@@ -2,6 +2,7 @@
 
 import { UserContext } from "@/context/UserProvider";
 import { HOST_URL } from "@/utils/urls";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { Form, Field } from "react-final-form";
@@ -68,87 +69,75 @@ export default function Register() {
 
     return (
         <main>
-            <section className="form-section">
+            <section className="register-form-section">
                 <Form
                     onSubmit={handleOnSubmit}
                     initialValues={initialRegisterState}
                     render={({ handleSubmit, submitting, errors, touched }) => (
                         <form onSubmit={handleSubmit}>
-                            <label>First Name</label>
-                            <article>
-                                <Field
-                                    data-testid="first_name"
-                                    name="first_name"
-                                    component="input"
-                                    type="text"
-                                    placeholder="First Name"
-                                    validate={validateNames}
-                                />
-                                {errors?.first_name && touched?.first_name && (
-                                    <p className="text-danger">
-                                        {errors?.first_name}
-                                    </p>
-                                )}
+                            <h2>Registration Form</h2>
+                            <article className="content">
+                                <article className="input-box">
+                                    <label htmlFor="">First Name</label>
+                                    <Field
+                                        data-testid="first_name"
+                                        name="first_name"
+                                        component="input"
+                                        type="text"
+                                        placeholder="Enter First Name"
+                                        validate={validateNames}
+                                    />
+                                </article>
+                                <article className="input-box">
+                                    <label htmlFor="">Last Name</label>
+                                    <Field
+                                        data-testid="last_name"
+                                        name="last_name"
+                                        component="input"
+                                        type="text"
+                                        placeholder="Enter Last Name"
+                                        validate={validateNames}
+                                    />
+                                </article>
+                                <article className="input-box">
+                                    <label htmlFor="">Email</label>
+                                    <Field
+                                        data-testid="email"
+                                        name="email"
+                                        component="input"
+                                        type="email"
+                                        placeholder="Enter Email"
+                                        validate={validateNames}
+                                    />
+                                </article>
+                                <article className="input-box">
+                                    <label htmlFor="">Password</label>
+                                    <Field
+                                        data-testid="email"
+                                        name="password"
+                                        component="input"
+                                        type="password"
+                                        placeholder="Enter Password"
+                                        validate={validateNames}
+                                    />
+                                </article>
                             </article>
 
-                            <label>Last Name</label>
-                            <article>
-                                <Field
-                                    data-testid="last_name"
-                                    name="last_name"
-                                    component="input"
-                                    type="text"
-                                    placeholder="Last Name"
-                                    validate={validateNames}
-                                />
-                                {errors?.last_name && touched?.last_name && (
-                                    <p className="text-danger">
-                                        {errors?.last_name}
-                                    </p>
-                                )}
+                            <article className="alert">
+                                <p>
+                                    By clicking Register, you agree our <Link href="terms">Terms and Conditions.</Link>
+                                </p>
                             </article>
-
-                            <label>Email</label>
-                            <article>
-                                <Field
-                                    data-testid="email"
-                                    name="email"
-                                    component="input"
-                                    type="email"
-                                    placeholder="Enter email"
-                                    validate={validateEmail}
-                                />
-                                {errors?.email && touched?.email && (
-                                    <p className="text-danger">
-                                        {errors?.email}
-                                    </p>
-                                )}
+                           
+                            <article className="button-container">
+                                <button
+                                    type="submit"
+                                    disabled={submitting}
+                                    data-testid="submit-button"
+                                >
+                                    Register
+                                </button> 
                             </article>
-
-                            <label>Password</label>
-                            <article>
-                                <Field
-                                    data-testid="password"
-                                    name="password"
-                                    component="input"
-                                    type="password"
-                                    placeholder="Enter password"
-                                    validate={validatePassword}
-                                />
-                                {errors?.password && touched?.password && (
-                                    <p className="text-danger">
-                                        {errors?.password}
-                                    </p>
-                                )}
-                            </article>
-
-                            <button
-                                type="submit"
-                                disabled={submitting}
-                                data-testid="submit-button"
-                            >
-                                Submit
-                            </button>
                         </form>
                     )}
                 />

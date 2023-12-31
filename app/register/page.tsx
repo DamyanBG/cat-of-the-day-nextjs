@@ -80,6 +80,7 @@ export default function Register() {
                                 <article className="input-box">
                                     <label htmlFor="">First Name</label>
                                     <Field
+                                        className={(errors?.first_name && touched?.first_name) && "input-error"}
                                         data-testid="first_name"
                                         name="first_name"
                                         component="input"
@@ -107,7 +108,7 @@ export default function Register() {
                                         component="input"
                                         type="email"
                                         placeholder="Enter Email"
-                                        validate={validateNames}
+                                        validate={validateEmail}
                                     />
                                 </article>
                                 <article className="input-box">
@@ -118,7 +119,7 @@ export default function Register() {
                                         component="input"
                                         type="password"
                                         placeholder="Enter Password"
-                                        validate={validateNames}
+                                        validate={validatePassword}
                                     />
                                 </article>
                             </article>

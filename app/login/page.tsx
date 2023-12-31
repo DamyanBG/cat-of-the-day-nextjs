@@ -2,6 +2,7 @@
 
 import { UserContext } from "@/context/UserProvider";
 import { HOST_URL } from "@/utils/urls";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { Field, Form } from "react-final-form";
@@ -22,7 +23,6 @@ const VOTER_PATH = "/voter/login";
 interface Credentials {
     email: string;
     password: string;
-    as_participant?: boolean;
   }
   
   const initialCredentialsState: Credentials = {
@@ -36,9 +36,7 @@ export default function LogIn() {
     const router = useRouter()
 
     const login = (values: Credentials) => {
-        const path = values.as_participant ? PARTICIPANT_PATH : VOTER_PATH
-        delete values.as_participant;
-        fetch(`${HOST_URL}${path}`, {
+        fetch(`${HOST_URL}/user/login`, {
           method: "POST",
           body: JSON.stringify(values),
           headers: {
@@ -65,53 +63,50 @@ export default function LogIn() {
 
     return (
         <main>
-            <section className="form-section">
+            <section className="login-form-section">
                 <Form
                     onSubmit={handleOnSubmit}
                     initialValues={initialCredentialsState}
-                    render={({ handleSubmit, submitting, errors, touched }) => (
+                    render={({ handleSubmit, submitting, errors, touched, values }) => (
                         <form onSubmit={handleSubmit}>
-                            <label>Email</label>
-                            <article>
+                            <h2>Login</h2>
+
+                            <article className="form-group">
+                                <span className="icon">&#x2709;</span>
                                 <Field
                                     data-testid="email"
                                     name="email"
                                     component="input"
                                     type="email"
-                                    placeholder="Enter email"
                                     validate={validateEmail}
-                                />
-                                {errors?.email && touched?.email && (
+                                    />
+                                {/* {errors?.email && touched?.email && (
                                     <p className="text-danger">
                                         {errors?.email}
                                     </p>
-                                )}
+                                )} */}
+                                <label className={values.email && "move-up"}>Email</label>
                             </article>  
 
-                            <label>Password</label>
-                            <article>
+                            <article className="form-group">
+                                <span className="icon">&#xa7;</span>
                                 <Field
                                     data-testid="password"
                                     name="password"
                                     component="input"
                                     type="password"
-                                    placeholder="Enter password"
                                     validate={validatePassword}
-                                />
-                                {errors?.password && touched?.password && (
+                                    />
+                                {/* {errors?.password && touched?.password && (
                                     <p className="text-danger">
                                         {errors?.password}
                                     </p>
-                                )}
+                                )} */}
+                                <label className={values.password && "move-up"}>Password</label>
                             </article>
 
-                            <label>Login as participant</label>
-                            <article>
-                                <Field
-                                    name="as_participant"
-                                    component="input"
-                                    type="checkbox"
-                                />
+                            <article className="forgot">
+                                <Link href="/forgot-password">Forgot Password</Link>
                             </article>
 
                             <button
@@ -119,8 +114,16 @@ export default function LogIn() {
                                 disabled={submitting}
                                 data-testid="submit-button"
                             >
-                                Submit
+                                Login
                             </button>
+
+                            <article className="register-link">
+                                <p>
+                                    Don&apos;t have an account?
+                                    {" "}
+                                    <Link href="/register">Register</Link>
+                                </p>
+                            </article>
                         </form>
                     )}
                 />

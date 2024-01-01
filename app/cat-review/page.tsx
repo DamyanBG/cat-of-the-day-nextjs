@@ -44,32 +44,19 @@ export default function CatReview() {
 
     return (
         <main>
-            <section>
+            <section className="review-section">
                 <h2>Review</h2>
-                <section className="voting-image-section">
-                    <img src={catInfo.photo_url} alt="" />
-                </section>
                 <section>
-                    <article className="flex">
-                        <p>Name:</p>
-                        <p>{catInfo.name}</p>
+                    <article>
+                        <img src={catInfo.photo_url} alt="" />
                     </article>
-                    <article className="flex">
-                        <p>Breed:</p>
-                        <p>{catInfo.breed}</p>
-                    </article>
-                    <article className="flex">
-                        <p>Microchip ID:</p>
-                        <p>{catInfo.microchip_id}</p>
-                    </article>
-                    <article className="flex">
-                        <p>Passport ID:</p>
-                        <p>{catInfo.passport_id}</p>
-                    </article>
-                    <article className="flex">
-                        <p>Added on:</p>
-                        <p>{catInfo.create_on}</p>
-                    </article>
+                    <section>
+                        <p>Name: {catInfo.name}</p>
+                        <p>Breed: {catInfo.breed}</p>
+                        <p>Microchip: {catInfo.microchip_id}</p>
+                        <p>Passport ID: {catInfo.passport_id}</p>
+                        <p>Added on: {catInfo.create_on}</p>
+                    </section>
                 </section>
             </section>
         </main>

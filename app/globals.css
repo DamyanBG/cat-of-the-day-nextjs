@@ -476,3 +476,42 @@ footer section p {
     line-height: 1.5;
     margin-bottom: 12px;
 }
+
+.review-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 64px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.review-section h2 {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.review-section > section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.review-section > section > * {
+    width: 40%;
+}
+
+.review-section > section > article > img {
+    width: 100%;
+}
+
+.review-section > section > section {
+    color: #fff;
+    font-size: 18px;
+}
+
+.review-section > section > section p {
+    margin-bottom: 12px;
+}

@@ -22,7 +22,7 @@ const Footer = () => {
                 </article>
             </section>
             <hr />
-            <p className="footer-text">&copy; 2023 Cat of the day app</p>
+            <p className="footer-text">&copy; 2024 Cat of the week app</p>
         </footer>
     );
 };

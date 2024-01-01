@@ -181,6 +181,14 @@ footer section p {
     background-color: #db2e0a;
 }
 
+.vote-section article center {
+    transition: 0.2s;
+}
+
+.vote-section article center:hover > :not(:hover) {
+    opacity: 0.3;
+}
+
 .login-form-section {
     position: relative;
     width: 400px;

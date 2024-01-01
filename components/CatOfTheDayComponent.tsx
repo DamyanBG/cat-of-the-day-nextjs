@@ -12,7 +12,7 @@ const CatOfTheWeekComponent = () => {
         fetch(`${HOST_URL}/cat-of-the-day-photo`)
             .then((resp) => resp.json())
             .then((json) => {
-                const newPhotoUrl = json.message ? DefaultCatPhoto.src : json.photo_url
+                const newPhotoUrl = json.message ? DefaultCatPhoto.src : json
                 setPhotoUrl(newPhotoUrl)
             });
     };

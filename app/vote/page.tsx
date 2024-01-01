@@ -4,6 +4,7 @@ import { MouseEventHandler, useContext, useEffect, useState } from "react";
 
 import { getCatForVote, postVote } from "@/api/voteApi";
 import { UserContext } from "@/context/UserProvider";
+// Refactor these types
 import {
     CatForVote,
     CatVote as CatVoteBody,
@@ -11,6 +12,7 @@ import {
     VoteEnum,
 } from "@/types/data/cat";
 import NeedRegistration from "@/components/NeedRegistration";
+import NoMoreCats from "@/components/NoMoreCats";
 
 const initialState: CatForVote = {
     pk: 0,
@@ -21,10 +23,15 @@ export default function Vote() {
     const { user } = useContext(UserContext);
     const [catForVote, setCatForVote] = useState<CatForVote>(initialState);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [areNoMoreCats, setAreNoMoreCats] = useState<boolean>(false)
 
     const getAndSetCatForVote = async () => {
-        const gotCatForVote = await getCatForVote(user.token);
-        setCatForVote(gotCatForVote);
+        const data = await getCatForVote(user.token);
+        if (data.cat_for_vote) {
+            setCatForVote(data.cat_for_vote);
+            return
+        }
+        setAreNoMoreCats(true)
     };
 
     useEffect(() => {
@@ -57,6 +64,8 @@ export default function Vote() {
     };
 
     if (!user.token) return <NeedRegistration />
+
+    if (areNoMoreCats) return <NoMoreCats />
 
     return (
         <main>

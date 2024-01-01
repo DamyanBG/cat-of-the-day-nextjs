@@ -27,11 +27,11 @@ export default function Vote() {
 
     const getAndSetCatForVote = async () => {
         const data = await getCatForVote(user.token);
-        if (data.cat_for_vote) {
-            setCatForVote(data.cat_for_vote);
+        if (data.message) {
+            setAreNoMoreCats(true)
             return
         }
-        setAreNoMoreCats(true)
+        setCatForVote(data);
     };
 
     useEffect(() => {

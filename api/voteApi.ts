@@ -10,6 +10,7 @@ export const getCatForVote = async (token: string | undefined) => {
         },
     });
     const { data } = response;
+    console.log(data)
     return data;
 };
 

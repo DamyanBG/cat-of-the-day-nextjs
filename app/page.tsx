@@ -6,7 +6,6 @@ export default function Home() {
         <main>
             <section className="top-section">
                 <article className="home-image">
-                
                     <CatOfTheWeekComponent />
                 </article>
                 <article className="home-text">

@@ -10,7 +10,6 @@ export const getCatOfTheDay = async () => {
         const response = await axios.get<GetCatOfTheDayResponse>(`${HOST_URL}/cat-of-the-day-photo`)
         photoUrl = response.data.cat_of_the_day
     } catch (error) {
-        console.log(error)
         photoUrl = DefaultCatPhoto.src
     }
     return photoUrl

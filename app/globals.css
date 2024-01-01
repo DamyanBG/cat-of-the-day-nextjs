@@ -22,7 +22,8 @@ header {
     padding-right: 40px;
     width: 100%;
     height: 80px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
 }
 
 .site-name a {
@@ -108,7 +109,7 @@ main {
 
 footer {
     color: #fff;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     padding: 1.5rem 3rem;
     text-align: center;
 }
@@ -139,7 +140,7 @@ footer section p {
 }
 
 .vote-section {
-    width: 80vw;
+    width: 70vw;
 }
 
 .vote-section img {
@@ -181,11 +182,15 @@ footer section p {
     background-color: #db2e0a;
 }
 
-.vote-section article center {
+.vote-section article center button {
     transition: 0.2s;
 }
 
-.vote-section article center:hover > :not(:hover) {
+/* .vote-section article center:hover > :not(:hover) {
+    opacity: 0.3;
+} */
+
+.hover-btn-effect:not(:hover) {
     opacity: 0.3;
 }
 

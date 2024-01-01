@@ -381,6 +381,23 @@ footer section p {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
+.input-box input[type="file"] {
+    border: none;
+    padding: 0;
+    color: #fff;
+}
+
+.input-box input[type="file"]::file-selector-button {
+    background: #330c43;
+    color: #fff;
+    width: 50%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, #aa076b, #61045f);
+    cursor: pointer;
+}
+
 .alert p {
     font-size: 14px;
     font-style: italic;

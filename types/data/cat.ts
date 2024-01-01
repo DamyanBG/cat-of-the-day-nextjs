@@ -15,3 +15,11 @@ export enum VoteEnum {
 }
 
 export type Vote = VoteEnum.Like | VoteEnum.Pass | VoteEnum.Dislike;
+
+export interface CatInfo {
+    name: string;
+    passport_id: string;
+    microchip_id: string;
+    photo: string;
+    breed: string;
+}

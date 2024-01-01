@@ -1,18 +1,11 @@
-"use client"
+"use client";
 
 import NeedRegistration from "@/components/NeedRegistration";
 import { UserContext } from "@/context/UserProvider";
+import { CatInfo } from "@/types/data/cat";
 import { HOST_URL } from "@/utils/urls";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
-
-interface CatInfo {
-    name: string;
-    passport_id: string;
-    microchip_id: string;
-    photo: string;
-    breed: string;
-}
 
 const initialCatInfoState: CatInfo = {
     name: "",
@@ -22,15 +15,14 @@ const initialCatInfoState: CatInfo = {
     breed: "",
 };
 
-
 export default function UploadCat() {
     const [catInfo, setCatInfo] = useState<CatInfo>(initialCatInfoState);
     const [isUploading, setIsUploading] = useState<boolean>(false);
 
     const { user, setUser } = useContext(UserContext);
-    const router = useRouter()
+    const router = useRouter();
 
-    const isUserAuthenticated = !!user.token
+    const isUserAuthenticated = !!user.token;
 
     const postCat = () => {
         setIsUploading(true);
@@ -51,8 +43,8 @@ export default function UploadCat() {
             .then(() => {
                 const newUserState = {
                     ...user,
-                    has_uploaded_cat: true
-                }
+                    has_uploaded_cat: true,
+                };
                 setUser(newUserState);
                 localStorage.setItem("user", JSON.stringify(newUserState));
                 router.push("/cat-review");
@@ -87,79 +79,84 @@ export default function UploadCat() {
     };
 
     if (!isUserAuthenticated) {
-        return (
-            <NeedRegistration />
-        )
+        return <NeedRegistration />;
     }
 
     return (
         <main>
-            <section>
+            <section className="register-form-section">
                 <form onSubmit={handleOnSubmit}>
-                    <h3>Add a New Cat</h3>
+                    <h2>Add a New Cat</h2>
 
-                    <article>
-                        <label>Cat Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Enter cat name"
-                            value={catInfo.name}
-                            onChange={handleOnChange}
+                    <article className="content">
+                        <article className="input-box">
+                            <label htmlFor="name">Cat Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                placeholder="Enter cat name"
+                                value={catInfo.name}
+                                onChange={handleOnChange}
+                                autoComplete="none"
                             />
+                        </article>
+
+                        <article className="input-box">
+                            <label htmlFor="breed">Cat Breed</label>
+                            <input
+                                type="text"
+                                name="breed"
+                                id="breed"
+                                placeholder="Enter cat breed"
+                                value={catInfo.breed}
+                                onChange={handleOnChange}
+                            />
+                        </article>
+
+                        <article className="input-box">
+                            <label htmlFor="passport_id">Cat Passport ID</label>
+                            <input
+                                type="text"
+                                name="passport_id"
+                                id="passport_id"
+                                placeholder="Enter cat passport id"
+                                value={catInfo.passport_id}
+                                onChange={handleOnChange}
+                            />
+                        </article>
+
+                        <article className="input-box">
+                            <label htmlFor="microchip_id">Microchip ID</label>
+                            <input
+                                type="text"
+                                name="microchip_id"
+                                id="microchip_id"
+                                placeholder="Enter cat microchip id"
+                                value={catInfo.microchip_id}
+                                onChange={handleOnChange}
+                            />
+                        </article>
+
+                        <article className="input-box">
+                            <label htmlFor="photo">Photo</label>
+                            <input
+                                type="file"
+                                name="photo"
+                                id="photo"
+                                placeholder="Choose a photo"
+                                onChange={handleOnChange}
+                            />
+                        </article>
                     </article>
 
-                    <article>
-                        <label>Cat Breed</label>
-                        <input
-                            type="text"
-                            name="breed"
-                            placeholder="Enter cat breed"
-                            value={catInfo.breed}
-                            onChange={handleOnChange}
-                        />
+                    <article className="button-container">
+                        <button type="submit" disabled={isUploading}>
+                            Add cat
+                        </button>
                     </article>
-
-                    <article>
-                        <label>Cat Passport ID</label>
-                        <input
-                            type="text"
-                            name="passport_id"
-                            placeholder="Enter cat passport id"
-                            value={catInfo.passport_id}
-                            onChange={handleOnChange}
-                        />
-                    </article>
-
-                    <article>
-                        <label>Microchip ID</label>
-                        <input
-                            type="text"
-                            name="microchip_id"
-                            placeholder="Enter cat microchip id"
-                            value={catInfo.microchip_id}
-                            onChange={handleOnChange}
-                        />
-                    </article>
-
-                    <article>
-                        <label>Photo</label>
-                        <input
-                            type="file"
-                            name="photo"
-                            placeholder="Choose a photo"
-                            onChange={handleOnChange}
-                        />
-                    </article>
-
-                    <button
-                        type="submit"
-                        disabled={isUploading}
-                    >
-                        Add cat
-                    </button>
                 </form>
             </section>
         </main>
-    )
+    );
 }

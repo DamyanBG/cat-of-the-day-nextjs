@@ -286,3 +286,18 @@ footer section p {
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 460px) {
+    main {
+        padding: 0;
+    }
+
+    .login-form-section {
+        width: 100%;
+        height: 80vh;
+    }
+
+    .form-group {
+        width: 290px;
+    }
+}

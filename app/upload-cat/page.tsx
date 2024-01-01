@@ -1,5 +1,6 @@
 "use client"
 
+import NeedRegistration from "@/components/NeedRegistration";
 import { CatExistsContext } from "@/context/CatExistProvider";
 import { UserContext } from "@/context/UserProvider";
 import { HOST_URL } from "@/utils/urls";
@@ -86,9 +87,7 @@ export default function UploadCat() {
 
     if (!isUserAuthenticated) {
         return (
-            <main>
-                <div>You have to be logged in to use this functionality!</div>
-            </main>
+            <NeedRegistration />
         )
     }
 

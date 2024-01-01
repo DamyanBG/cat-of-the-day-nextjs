@@ -1,7 +1,6 @@
 "use client"
 
 import NeedRegistration from "@/components/NeedRegistration";
-import { CatExistsContext } from "@/context/CatExistProvider";
 import { UserContext } from "@/context/UserProvider";
 import { HOST_URL } from "@/utils/urls";
 import { useRouter } from "next/navigation";
@@ -28,8 +27,7 @@ export default function UploadCat() {
     const [catInfo, setCatInfo] = useState<CatInfo>(initialCatInfoState);
     const [isUploading, setIsUploading] = useState<boolean>(false);
 
-    const { user } = useContext(UserContext);
-    const { setCatExists } = useContext(CatExistsContext);
+    const { user, setUser } = useContext(UserContext);
     const router = useRouter()
 
     const isUserAuthenticated = !!user.token
@@ -50,10 +48,13 @@ export default function UploadCat() {
                 }
                 return resp.json();
             })
-            .then((json) => {
-                console.log(json);
-                setCatExists(true);
-                localStorage.setItem("catExist", "true");
+            .then(() => {
+                const newUserState = {
+                    ...user,
+                    has_uploaded_cat: true
+                }
+                setUser(newUserState);
+                localStorage.setItem("user", JSON.stringify(newUserState));
                 router.push("/cat-review");
             })
             .catch(() => alert("Problem occured during uploading the photo!"))

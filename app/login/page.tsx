@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { UserContext } from "@/context/UserProvider";
 import { HOST_URL } from "@/utils/urls";
@@ -17,49 +17,45 @@ const validatePassword = (value: string) =>
         ? null
         : "Password must be at least 6 characters long and include at least 1 capital letter and 1 digit!";
 
-const PARTICIPANT_PATH = "/uploader/login";
-const VOTER_PATH = "/voter/login";
-
 interface Credentials {
     email: string;
     password: string;
-  }
-  
-  const initialCredentialsState: Credentials = {
+}
+
+const initialCredentialsState: Credentials = {
     password: "",
     email: "",
-  };
-  
+};
 
 export default function LogIn() {
     const { setUser } = useContext(UserContext);
-    const router = useRouter()
+    const router = useRouter();
 
     const login = (values: Credentials) => {
         fetch(`${HOST_URL}/user/login`, {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-Type": "application/json",
-          },
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-          .then((resp) => {
-            console.log(resp);
-            return resp.json();
-          })
-          .then((json) => {
-            console.log(json);
-            if (json.token) {
-              localStorage.setItem("user", JSON.stringify(json));
-              setUser(json);
-              router.push("/");
-            }
-          });
-      };
+            .then((resp) => {
+                console.log(resp);
+                return resp.json();
+            })
+            .then((json) => {
+                console.log(json);
+                if (json.token) {
+                    localStorage.setItem("user", JSON.stringify(json));
+                    setUser(json);
+                    router.push("/");
+                }
+            });
+    };
 
-      const handleOnSubmit = (values: Credentials) => {
+    const handleOnSubmit = (values: Credentials) => {
         login(values);
-      };
+    };
 
     return (
         <main>
@@ -67,7 +63,13 @@ export default function LogIn() {
                 <Form
                     onSubmit={handleOnSubmit}
                     initialValues={initialCredentialsState}
-                    render={({ handleSubmit, submitting, errors, touched, values }) => (
+                    render={({
+                        handleSubmit,
+                        submitting,
+                        errors,
+                        touched,
+                        values,
+                    }) => (
                         <form onSubmit={handleSubmit}>
                             <h2>Login</h2>
 
@@ -79,14 +81,16 @@ export default function LogIn() {
                                     component="input"
                                     type="email"
                                     validate={validateEmail}
-                                    />
+                                />
                                 {/* {errors?.email && touched?.email && (
                                     <p className="text-danger">
                                         {errors?.email}
                                     </p>
                                 )} */}
-                                <label className={values.email && "move-up"}>Email</label>
-                            </article>  
+                                <label className={values.email && "move-up"}>
+                                    Email
+                                </label>
+                            </article>
 
                             <article className="form-group">
                                 <span className="icon">&#xa7;</span>
@@ -96,17 +100,21 @@ export default function LogIn() {
                                     component="input"
                                     type="password"
                                     validate={validatePassword}
-                                    />
+                                />
                                 {/* {errors?.password && touched?.password && (
                                     <p className="text-danger">
                                         {errors?.password}
                                     </p>
                                 )} */}
-                                <label className={values.password && "move-up"}>Password</label>
+                                <label className={values.password && "move-up"}>
+                                    Password
+                                </label>
                             </article>
 
                             <article className="forgot">
-                                <Link href="/forgot-password">Forgot Password</Link>
+                                <Link href="/forgot-password">
+                                    Forgot Password
+                                </Link>
                             </article>
 
                             <button
@@ -119,8 +127,7 @@ export default function LogIn() {
 
                             <article className="register-link">
                                 <p>
-                                    Don&apos;t have an account?
-                                    {" "}
+                                    Don&apos;t have an account?{" "}
                                     <Link href="/register">Register</Link>
                                 </p>
                             </article>
@@ -129,5 +136,5 @@ export default function LogIn() {
                 />
             </section>
         </main>
-    )
+    );
 }

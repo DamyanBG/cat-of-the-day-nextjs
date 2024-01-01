@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { useContext } from "react";
 
-import { CatExistsContext } from "@/context/CatExistProvider";
+import { UserContext } from "@/context/UserProvider";
 
 const PageNav = () => {
-    const { catExists } = useContext(CatExistsContext)
+    const { user } = useContext(UserContext)
 
     return (
         <nav>
             <Link href="/vote">Vote</Link>
-            {catExists ? (
+            {user.has_uploaded_cat ? (
                 <Link href="/cat-review">Review your cat</Link>
             ): (
                 <Link href="/upload-cat">Upload cat</Link>

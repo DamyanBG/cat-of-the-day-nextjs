@@ -9,6 +9,7 @@ interface User {
   email?: string;
   user_pk?: number;
   token?: string;
+  has_uploaded_cat?: boolean;
   // Add any other properties of the user object here.
 }
 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { UserProvider } from "@/context/UserProvider";
-import { CatExistsProvider } from "@/context/CatExistProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -24,11 +23,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <UserProvider>
-                    <CatExistsProvider>
-                        <Header />
-                        {children}
-                        <Footer />
-                    </CatExistsProvider>
+                    <Header />
+                    {children}
+                    <Footer />
                 </UserProvider>
             </body>
         </html>

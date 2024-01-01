@@ -249,6 +249,13 @@ footer section p {
     padding: 0 35px 0 5px;
 }
 
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover, 
+.form-group input:-webkit-autofill:focus, 
+.form-group input:-webkit-autofill:active{
+    transition: background-color 0s 600000s, color 0s 600000s;
+}
+
 .form-group .icon {
     position: absolute;
     right: 8px;

@@ -515,3 +515,40 @@ footer section p {
 .review-section > section > section p {
     margin-bottom: 12px;
 }
+
+.profile {
+    max-width: 650px;
+    padding: 64px;
+    margin: 0 28px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.6);
+}
+
+.profile h2 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    color: #fff;
+    padding-bottom: 8px;
+    border-bottom: 1px solid silver;
+}
+
+.profile p {
+    margin-top: 12px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.profile button {
+    margin-top: 12px;
+    height: 40px;
+    padding:  0 12px;
+    background: red;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+}

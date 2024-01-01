@@ -10,6 +10,7 @@ import {
     Vote,
     VoteEnum,
 } from "@/types/data/cat";
+import NeedRegistration from "@/components/NeedRegistration";
 
 const initialState: CatForVote = {
     pk: 0,
@@ -54,6 +55,8 @@ export default function Vote() {
     const handleOnPass: MouseEventHandler = () => {
         handleOnPostVote(VoteEnum.Pass);
     };
+
+    if (!user.token) return <NeedRegistration />
 
     return (
         <main>

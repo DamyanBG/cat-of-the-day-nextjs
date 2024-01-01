@@ -414,3 +414,20 @@ footer section p {
 .input-error {
     border: 1px solid red !important;
 }
+
+.need-registration {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 64px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.need-registration a {
+    color: skyblue;
+}
+
+.need-registration a:hover {
+    color: #380036;
+    text-decoration: underline;
+}

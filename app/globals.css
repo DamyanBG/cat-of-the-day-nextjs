@@ -172,6 +172,19 @@ main {
     color: #fff;
 }
 
+@media (max-width: 800px) {
+    .top-section {
+        display: block;
+        height: auto;
+    }
+
+    .home-text {
+        justify-content: center;
+        width: auto;
+        margin-bottom: 24px;
+    }
+}
+
 footer {
     color: #fff;
     background: rgba(0, 0, 0, 0.5);

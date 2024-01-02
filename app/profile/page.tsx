@@ -1,7 +1,8 @@
 "use client"
 
-import { getSelfUserInfo } from "@/api/userApi"
+import { deleteSelfUser, getSelfUserInfo } from "@/api/userApi"
 import { UserContext } from "@/context/UserProvider"
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react"
 
 interface UserInfo {
@@ -17,13 +18,27 @@ const initialUserInfo: UserInfo = {
 }
 
 export default function Profile() {
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     const [userInfo, setUserInfo] = useState<UserInfo>(initialUserInfo)
+    const router = useRouter()
+    const [isDeleting, setIsDeleting] = useState(false)
 
     const getAndSetUserInfo = async () => {
         const gotUserInfo = await getSelfUserInfo(user.token)
         console.log(gotUserInfo)
         setUserInfo(gotUserInfo)
+    }
+    
+    const handleOnDelete = async () => {
+        setIsDeleting(true)
+        try {
+            await deleteSelfUser(user.token)
+            setUser({})
+            localStorage.removeItem("user")
+            router.push("/")
+        } catch {
+            setIsDeleting(false)
+        }
     }
 
     useEffect(() => {
@@ -37,7 +52,7 @@ export default function Profile() {
                 <p>First name: {userInfo.first_name}</p>
                 <p>Last name: {userInfo.last_name}</p>
                 <p>Email: {userInfo.email}</p>
-                <button>Delete Profile</button>
+                <button type="button" onClick={handleOnDelete} disabled={isDeleting}>Delete Profile</button>
             </section>
         </main>
     )

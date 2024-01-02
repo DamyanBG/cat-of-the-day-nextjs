@@ -10,3 +10,11 @@ export const getSelfUserInfo = async (token: string | undefined) => {
     const userInfo = response.data
     return userInfo
 }
+
+export const deleteSelfUser = async (token: string | undefined) => {
+    const response = await axios.delete(`${HOST_URL}/user-info`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}

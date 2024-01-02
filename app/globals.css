@@ -26,9 +26,15 @@ header {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
 }
 
+header section {
+    display: flex;
+    justify-content: space-between;
+    width: 53vw;
+}
+
 .site-name a {
     text-transform: uppercase;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 900;
     color: #fff;
 }
@@ -54,6 +60,65 @@ header nav a::before {
 
 header nav a:hover::before {
     width: 100%;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .site-name a {
+        font-size: 18px;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger .line {
+        width: 30px;
+        height: 3px;
+        background: #fefefe;
+        margin: 6px 0;
+    }
+
+    header section {
+        display: block;
+        height: 0;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        background: #11101b;
+        transition: 0.2s;
+        overflow: hidden;
+        z-index: 99;
+    }
+
+    header section.active {
+        height: 450px;
+    }
+    
+
+    header section nav {
+        display: block;
+        width: fit-content;
+        margin: 80px auto 0 auto;
+        text-align: center;
+        transition: 0.5s;
+        opacity: 0;
+    }
+    
+    header section.active nav {
+        opacity: 1;
+    }
+    
+    header section nav a {
+        display: block;
+        margin-bottom: 12px;
+    }
 }
 
 main {

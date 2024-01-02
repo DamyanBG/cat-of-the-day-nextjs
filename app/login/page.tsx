@@ -2,6 +2,8 @@
 
 import { UserContext } from "@/context/UserProvider";
 import { HOST_URL } from "@/utils/urls";
+import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -74,7 +76,9 @@ export default function LogIn() {
                             <h2>Log In</h2>
 
                             <article className="form-group">
-                                <span className="icon">&#x2709;</span>
+                                <span className="icon">
+                                    <FontAwesomeIcon icon={faEnvelope} />
+                                </span>
                                 <Field
                                     data-testid="email"
                                     name="email"
@@ -93,7 +97,9 @@ export default function LogIn() {
                             </article>
 
                             <article className="form-group">
-                                <span className="icon">&#xa7;</span>
+                                <span className="icon">
+                                    <FontAwesomeIcon icon={faKey} />
+                                </span>
                                 <Field
                                     data-testid="password"
                                     name="password"

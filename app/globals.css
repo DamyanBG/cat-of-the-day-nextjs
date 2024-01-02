@@ -135,6 +135,15 @@ footer section p {
     margin-bottom: 6px;
 }
 
+footer section p a {
+    color: #fff;
+}
+
+footer section p a:hover {
+    text-decoration: underline;
+    color: #380036;
+}
+
 .footer-text {
     margin-top: 12px;
 }

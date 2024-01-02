@@ -30,7 +30,6 @@ const Footer = () => {
                             <FontAwesomeIcon icon={faFacebook} /> Facebook
                         </Link>
                     </p>
-                    <p>Instagram: @example</p>
                 </article>
             </section>
             <hr />

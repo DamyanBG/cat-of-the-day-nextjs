@@ -226,6 +226,18 @@ footer section p a:hover {
     margin-top: 12px;
 }
 
+@media (max-width: 650px) {
+    footer section {
+        display: block;
+        text-align: center;
+    }
+
+    footer section article {
+        width: auto;
+        margin-bottom: 48px;
+    }
+}
+
 .vote-section {
     width: 70vw;
 }

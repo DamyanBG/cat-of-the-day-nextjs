@@ -31,7 +31,7 @@ const VoteButtons = ({ areDisabled, handleOnPostVote }: VoteButtonsProps) => {
     }
 
     return (
-        <article>
+        <article className="vote-buttons-container">
             <center>
                 <button
                     type="button"

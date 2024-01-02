@@ -292,6 +292,20 @@ footer section p a:hover {
     opacity: 0.3;
 } */
 
+@media (max-width: 700px) {
+    .vote-section {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .vote-buttons-container center button {
+        display: block;
+        width: 40vw;
+        margin-bottom: 20px;
+    }
+}
+
 .hover-btn-effect:not(:hover) {
     opacity: 0.3;
 }

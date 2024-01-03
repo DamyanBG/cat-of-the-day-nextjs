@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import Script from "next/script";
 
 import { UserProvider } from "@/context/UserProvider";
 import Header from "@/components/Header";
@@ -29,6 +30,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
+            <Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4884280499405624" />
             <body className={inter.className}>
                 <UserProvider>
                     <Header />

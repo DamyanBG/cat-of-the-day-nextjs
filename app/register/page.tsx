@@ -1,45 +1,28 @@
 "use client";
 
 import { UserContext } from "@/context/UserProvider";
+import { RegisterFormValues } from "@/types/data/user";
+import { userRegisterSchema } from "@/utils/schemas";
 import { HOST_URL } from "@/utils/urls";
+import { Field, Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
-import { Form, Field } from "react-final-form";
+import { useContext, useState } from "react";
 
-interface RegisterInfo {
-    first_name: string;
-    last_name: string;
-    email: string;
-    password: string;
-}
-
-const initialRegisterState: RegisterInfo = {
+const initialRegisterState: RegisterFormValues = {
     first_name: "",
     last_name: "",
     email: "",
     password: "",
 };
 
-const EMAIL_REGEX: RegExp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-const PASSWORD_REGEX: RegExp = /^(?=.*\d)(?=.*[A-Z]).{6,}$/;
-
-const validateNames = (value: string) =>
-    value.length > 2 && value.length < 256
-        ? null
-        : "The name have to be between 3 and 255 chars!";
-const validateEmail = (value: string) =>
-    EMAIL_REGEX.test(value) ? null : "Please, enter valid email!";
-const validatePassword = (value: string) =>
-    PASSWORD_REGEX.test(value)
-        ? null
-        : "Password must be at least 6 characters long and include at least 1 capital letter and 1 digit!";
-
 export default function Register() {
     const { setUser } = useContext(UserContext);
     const router = useRouter();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const postUser = (values: RegisterInfo) => {
+    const postUser = (values: RegisterFormValues) => {
+        setIsSubmitting(true);
         fetch(`${HOST_URL}/user/register`, {
             method: "POST",
             body: JSON.stringify(values),
@@ -60,88 +43,93 @@ export default function Register() {
                     setUser(json);
                     router.push("/");
                 }
-            });
+            })
+            .finally(() => setIsSubmitting(false));
     };
 
-    const handleOnSubmit = (values: RegisterInfo) => {
+    const handleOnSubmit = (values: RegisterFormValues) => {
         postUser(values);
     };
 
     return (
         <main>
             <section className="register-form-section">
-                <Form
-                    onSubmit={handleOnSubmit}
+                <Formik
                     initialValues={initialRegisterState}
-                    render={({ handleSubmit, submitting, errors, touched }) => (
-                        <form onSubmit={handleSubmit}>
+                    onSubmit={handleOnSubmit}
+                    validationSchema={userRegisterSchema}
+                >
+                    {({ errors, touched }) => (
+                        <Form>
                             <h2>Registration Form</h2>
                             <article className="content">
                                 <article className="input-box">
                                     <label htmlFor="">First Name</label>
                                     <Field
-                                        className={(errors?.first_name && touched?.first_name) && "input-error"}
-                                        data-testid="first_name"
                                         name="first_name"
-                                        component="input"
-                                        type="text"
                                         placeholder="Enter First Name"
-                                        validate={validateNames}
                                     />
+                                    {(errors.first_name && touched.first_name) && (
+                                        <p className="form-error">{errors.first_name}</p>
+                                    )}
                                 </article>
+
                                 <article className="input-box">
                                     <label htmlFor="">Last Name</label>
                                     <Field
-                                        data-testid="last_name"
                                         name="last_name"
-                                        component="input"
-                                        type="text"
                                         placeholder="Enter Last Name"
-                                        validate={validateNames}
                                     />
+                                    {(errors.last_name && touched.last_name) && (
+                                        <p className="form-error">{errors.last_name}</p>
+                                    )}
                                 </article>
+
                                 <article className="input-box">
                                     <label htmlFor="">Email</label>
                                     <Field
-                                        data-testid="email"
                                         name="email"
-                                        component="input"
-                                        type="email"
                                         placeholder="Enter Email"
-                                        validate={validateEmail}
                                     />
+                                    {(errors.email && touched.email) && (
+                                        <p className="form-error">{errors.email}</p>
+                                    )}
                                 </article>
+
                                 <article className="input-box">
                                     <label htmlFor="">Password</label>
                                     <Field
-                                        data-testid="email"
                                         name="password"
-                                        component="input"
-                                        type="password"
                                         placeholder="Enter Password"
-                                        validate={validatePassword}
+                                        type="password"
                                     />
+                                    {(errors.password && touched.password) && (
+                                        <p className="form-error">{errors.password}</p>
+                                    )}
                                 </article>
                             </article>
 
                             <article className="alert">
                                 <p>
-                                    By clicking Register, you agree our <Link href="terms">Terms and Conditions.</Link>
+                                    By clicking Register, you agree our{" "}
+                                    <Link href="terms">
+                                        Terms and Conditions.
+                                    </Link>
                                 </p>
                             </article>
-                           
+
                             <article className="button-container">
                                 <button
                                     type="submit"
-                                    disabled={submitting}
+                                    disabled={isSubmitting}
                                     data-testid="submit-button"
                                 >
                                     Register
-                                </button> 
+                                </button>
                             </article>
-                        </form>
+                        </Form>
                     )}
-                />
+                </Formik>
             </section>
         </main>
     );

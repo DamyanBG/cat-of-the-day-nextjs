@@ -702,3 +702,9 @@ footer section p a:hover {
     color: #fff;
     font-size: 18px;
 }
+
+.form-error {
+    color: red;
+    font-size: 12px;
+    padding: 6px;
+}

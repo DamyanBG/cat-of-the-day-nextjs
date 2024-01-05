@@ -1,28 +1,16 @@
 "use client";
 
-import { UserContext } from "@/context/UserProvider";
-import { HOST_URL } from "@/utils/urls";
-import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
-import { Field, Form } from "react-final-form";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 
-const EMAIL_REGEX: RegExp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-const PASSWORD_REGEX: RegExp = /^(?=.*\d)(?=.*[A-Z]).{6,}$/;
-
-const validateEmail = (value: string) =>
-    EMAIL_REGEX.test(value) ? null : "Please, enter valid email!";
-const validatePassword = (value: string) =>
-    PASSWORD_REGEX.test(value)
-        ? null
-        : "Password must be at least 6 characters long and include at least 1 capital letter and 1 digit!";
-
-interface Credentials {
-    email: string;
-    password: string;
-}
+import { UserContext } from "@/context/UserProvider";
+import { Credentials } from "@/types/data/user";
+import { userLoginSchema } from "@/utils/schemas";
+import { HOST_URL } from "@/utils/urls";
 
 const initialCredentialsState: Credentials = {
     password: "",
@@ -32,8 +20,10 @@ const initialCredentialsState: Credentials = {
 export default function LogIn() {
     const { setUser } = useContext(UserContext);
     const router = useRouter();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const login = (values: Credentials) => {
+        setIsSubmitting(true);
         fetch(`${HOST_URL}/user/login`, {
             method: "POST",
             body: JSON.stringify(values),
@@ -52,7 +42,8 @@ export default function LogIn() {
                     setUser(json);
                     router.push("/");
                 }
-            });
+            })
+            .finally(() => setIsSubmitting(false));
     };
 
     const handleOnSubmit = (values: Credentials) => {
@@ -62,37 +53,28 @@ export default function LogIn() {
     return (
         <main>
             <section className="login-form-section">
-                <Form
-                    onSubmit={handleOnSubmit}
+                <Formik
                     initialValues={initialCredentialsState}
-                    render={({
-                        handleSubmit,
-                        submitting,
-                        errors,
-                        touched,
-                        values,
-                    }) => (
-                        <form onSubmit={handleSubmit}>
+                    onSubmit={handleOnSubmit}
+                    validationSchema={userLoginSchema}
+                >
+                    {({ values, errors, touched }) => (
+                        <Form>
                             <h2>Log In</h2>
 
                             <article className="form-group">
                                 <span className="icon">
                                     <FontAwesomeIcon icon={faEnvelope} />
                                 </span>
-                                <Field
-                                    data-testid="email"
-                                    name="email"
-                                    component="input"
-                                    type="email"
-                                    validate={validateEmail}
-                                />
-                                {/* {errors?.email && touched?.email && (
-                                    <p className="text-danger">
-                                        {errors?.email}
-                                    </p>
-                                )} */}
+                                <Field data-testid="email" name="email" />
+
                                 <label className={values.email && "move-up"}>
-                                    Email
+                                    Email{" "}
+                                    {errors.email && touched.email && (
+                                        <span className="form-error">
+                                            <ErrorMessage name="email" />
+                                        </span>
+                                    )}
                                 </label>
                             </article>
 
@@ -103,17 +85,15 @@ export default function LogIn() {
                                 <Field
                                     data-testid="password"
                                     name="password"
-                                    component="input"
                                     type="password"
-                                    validate={validatePassword}
                                 />
-                                {/* {errors?.password && touched?.password && (
-                                    <p className="text-danger">
-                                        {errors?.password}
-                                    </p>
-                                )} */}
                                 <label className={values.password && "move-up"}>
-                                    Password
+                                    Password{" "}
+                                    {errors.password && touched.password && (
+                                        <span className="form-error">
+                                            <ErrorMessage name="password" />
+                                        </span>
+                                    )}
                                 </label>
                             </article>
 
@@ -125,7 +105,7 @@ export default function LogIn() {
 
                             <button
                                 type="submit"
-                                disabled={submitting}
+                                disabled={isSubmitting}
                                 data-testid="submit-button"
                             >
                                 Log In
@@ -137,9 +117,9 @@ export default function LogIn() {
                                     <Link href="/register">Register</Link>
                                 </p>
                             </article>
-                        </form>
+                        </Form>
                     )}
-                />
+                </Formik>
             </section>
         </main>
     );

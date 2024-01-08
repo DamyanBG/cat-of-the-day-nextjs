@@ -2,6 +2,7 @@ import { getCatOfTheWeek } from "@/api/catApi";
 
 const CatOfTheWeekComponent = async () => {
     const photoUrl = await getCatOfTheWeek()
+    console.log(photoUrl)
 
     return (
         

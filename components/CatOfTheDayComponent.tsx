@@ -1,7 +1,7 @@
-import { getCatOfTheDay } from "@/api/catApi";
+import { getCatOfTheWeek } from "@/api/catApi";
 
 const CatOfTheWeekComponent = async () => {
-    const photoUrl = await getCatOfTheDay()
+    const photoUrl = await getCatOfTheWeek()
 
     return (
         

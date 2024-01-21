@@ -439,6 +439,11 @@ footer section p {
     background: linear-gradient(to right, #a9387e, #8a3a89);
 }
 
+.button-container button:disabled {
+    opacity: 0.5;
+}
+
+
 @media (max-width: 600px) {
     .register-form-section {
         min-width: 380px;

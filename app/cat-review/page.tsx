@@ -10,7 +10,7 @@ interface CatInfo {
     breed: string;
     microchip_id: string;
     passport_id: string;
-    create_on: string;
+    created_on: string;
 }
 
 const catInfoInitialState = {
@@ -19,7 +19,7 @@ const catInfoInitialState = {
     breed: "",
     microchip_id: "",
     passport_id: "",
-    create_on: "",
+    created_on: "",
 };
 
 export default function CatReview() {
@@ -55,7 +55,7 @@ export default function CatReview() {
                         <p>Breed: {catInfo.breed}</p>
                         <p>Microchip: {catInfo.microchip_id}</p>
                         <p>Passport ID: {catInfo.passport_id}</p>
-                        <p>Added on: {catInfo.create_on}</p>
+                        <p>Added on: {catInfo.created_on}</p>
                     </section>
                 </section>
             </section>

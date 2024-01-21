@@ -71,7 +71,7 @@ export default function LogIn() {
                         values,
                     }) => (
                         <form onSubmit={handleSubmit}>
-                            <h2>Login</h2>
+                            <h2>Log In</h2>
 
                             <article className="form-group">
                                 <span className="icon">&#x2709;</span>
@@ -122,7 +122,7 @@ export default function LogIn() {
                                 disabled={submitting}
                                 data-testid="submit-button"
                             >
-                                Login
+                                Log In
                             </button>
 
                             <article className="register-link">

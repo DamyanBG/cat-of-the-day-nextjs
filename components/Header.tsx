@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header>
       <article className="site-name">
-        <Link href="/">Cat of the week</Link>
+        <Link href="/">Cat of the week beta</Link>
       </article>
       <PageNav />
       <AuthNav />

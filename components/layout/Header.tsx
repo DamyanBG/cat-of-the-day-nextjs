@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Header() {
     return (
         <header className="flex items-center justify-between bg-[#1e40af] px-4 py-3 text-white shadow-md sm:px-6 lg:px-8">
-            <Link className="text-lg font-bold" href="#">
+            <Link className="text-lg font-bold" href="/">
                 Cat Of The Week
             </Link>
             <nav className="flex items-center space-x-4">
@@ -18,7 +18,7 @@ export default function Header() {
                 <Link className="hover:text-[#93c5fd]" href="#">
                     Info
                 </Link>
-                <Link className="hover:text-[#93c5fd]" href="#">
+                <Link className="hover:text-[#93c5fd]" href="/register">
                     Register
                 </Link>
                 <Link className="hover:text-[#93c5fd]" href="#">

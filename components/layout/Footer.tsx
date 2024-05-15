@@ -12,8 +12,8 @@ export default function Footer() {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">About Us</h3>
           <p className="text-gray-300">
-            We are a passionate team of developers who love creating delightful experiences for cat lovers. Our 'Cat of
-            the Day' app is our way of sharing our love for these furry friends with the world.
+            We are a passionate team of developers who love creating delightful experiences for cat lovers. Our 'Cat Of
+            The Week' app is our way of sharing our love for these furry friends with the world.
           </p>
         </div>
         <div className="space-y-4">
@@ -21,7 +21,7 @@ export default function Footer() {
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <MailIcon className="h-5 w-5 text-gray-400" />
-              <span>contact@catoftheday.com</span>
+              <span>inspirationalscattery@gmail.com</span>
             </div>
             <div className="flex items-center space-x-2">
               <PhoneIcon className="h-5 w-5 text-gray-400" />

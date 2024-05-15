@@ -34,13 +34,13 @@ export default async function Home() {
                         <div className="flex space-x-4">
                             <Link
                                 className="inline-flex items-center rounded-md bg-[#1e40af] px-4 py-2 text-white hover:bg-[#1c4ab8] focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 dark:bg-[#f3f4f6] dark:text-[#1f2937] dark:hover:bg-[#e5e7eb] dark:focus:ring-[#6b7280] dark:focus:ring-offset-[#1f2937]"
-                                href="#"
+                                href="/vote"
                             >
                                 Vote Now
                             </Link>
                             <Link
                                 className="inline-flex items-center rounded-md border border-[#d1d5db] bg-white px-4 py-2 text-[#1f2937] hover:bg-[#f3f4f6] focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 dark:border-[#4b5563] dark:bg-[#1f2937] dark:text-[#f3f4f6] dark:hover:bg-[#374151] dark:focus:ring-[#6b7280]"
-                                href="#"
+                                href="/about"
                             >
                                 Learn More
                             </Link>

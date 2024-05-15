@@ -8,6 +8,8 @@ import { Field, Form, Formik } from "formik";
 import RegisterForm from "@/components/form/RegisterForm";
 import { UserRegister } from "@/types/user";
 import { HOST_URL } from "@/utils/urls";
+import { UserContext } from "@/context/UserProvider";
+import FormWrapper from "@/components/form/FormWrapper";
 
 const initialRegisterState: UserRegister = {
     first_name: "",
@@ -49,9 +51,20 @@ export default function Register() {
     };
 
     const handleOnSubmit = (values: UserRegister) => {
+        console.log(values)
         postUser(values);
     };
 
 
-    return <RegisterForm />;
+    return (
+        <FormWrapper title="Register" text="Create an account to get started with Cat of the Day.">
+            <Formik
+                initialValues={initialRegisterState}
+                // validate={}
+                onSubmit={handleOnSubmit}
+            >
+                <RegisterForm isSubmitting={isSubmitting} />
+            </Formik>
+        </FormWrapper>
+    );
 }

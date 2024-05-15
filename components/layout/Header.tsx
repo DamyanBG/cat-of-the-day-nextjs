@@ -8,6 +8,32 @@ import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import UserConditionalLink from "./ConditionalLink";
 
+const Links = () => (
+    <>
+        <Link className="hover:underline" href="/add-cat">
+            Add Cat
+        </Link>
+        <Link className="hover:underline" href="/vote">
+            Vote
+        </Link>
+        <Link className="hover:underline" href="/about">
+            About
+        </Link>
+        <UserConditionalLink
+            falsyHref="/register"
+            falsyText="Register"
+            truthyHref="/profile"
+            truthyText="Profile"
+        />
+        <UserConditionalLink
+            falsyHref="/login"
+            falsyText="Log In"
+            truthyHref="/logout"
+            truthyText="Log Out"
+        />
+    </>
+);
+
 export default function Component() {
     return (
         <header className="bg-[rgb(30,64,175)] text-white px-4 py-3 md:px-6 md:py-4 flex items-center justify-between">
@@ -15,27 +41,7 @@ export default function Component() {
                 <span className="text-lg font-semibold">Cat Of The Week</span>
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-                <Link className="hover:underline" href="/add-cat">
-                    Add Cat
-                </Link>
-                <Link className="hover:underline" href="/vote">
-                    Vote
-                </Link>
-                <Link className="hover:underline" href="/about">
-                    About
-                </Link>
-                <UserConditionalLink
-                    falsyHref="/register"
-                    falsyText="Register"
-                    truthyHref="/profile"
-                    truthyText="Profile"
-                />
-                <UserConditionalLink
-                    falsyHref="/login"
-                    falsyText="Log In"
-                    truthyHref="/logout"
-                    truthyText="Log Out"
-                />
+                <Links />
             </nav>
             <Sheet>
                 <SheetTrigger asChild>
@@ -50,21 +56,7 @@ export default function Component() {
                 </SheetTrigger>
                 <SheetContent side="right">
                     <div className="grid gap-4 p-4">
-                        <Link className="hover:underline" href="#">
-                            Add Cat
-                        </Link>
-                        <Link className="hover:underline" href="#">
-                            Vote
-                        </Link>
-                        <Link className="hover:underline" href="#">
-                            About
-                        </Link>
-                        <Link className="hover:underline" href="#">
-                            Register
-                        </Link>
-                        <Link className="hover:underline" href="#">
-                            Log In
-                        </Link>
+                        <Links />
                     </div>
                 </SheetContent>
             </Sheet>

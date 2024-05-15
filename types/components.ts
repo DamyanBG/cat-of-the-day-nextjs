@@ -5,5 +5,12 @@ export interface FormWrapperProps {
 }
 
 export interface FormProps {
-    isSubmitting: boolean
+    isSubmitting: boolean;
+}
+
+export interface UserConditionalLinkProps {
+    falsyHref: string;
+    falsyText: string;
+    truthyHref: string;
+    truthyText: string;
 }

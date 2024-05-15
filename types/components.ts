@@ -14,3 +14,8 @@ export interface UserConditionalLinkProps {
     truthyHref: string;
     truthyText: string;
 }
+
+export interface CatFormWrapperProps {
+    photoDropZoneEl: JSX.Element;
+    formEl: JSX.Element;
+}

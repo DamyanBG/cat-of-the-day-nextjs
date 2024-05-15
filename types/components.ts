@@ -4,6 +4,6 @@ export interface FormWrapperProps {
     text: string;
 }
 
-export interface RegisterFormProps {
+export interface FormProps {
     isSubmitting: boolean
 }

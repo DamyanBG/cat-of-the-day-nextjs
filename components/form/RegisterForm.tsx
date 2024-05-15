@@ -11,9 +11,9 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { UserRegister } from "@/types/user";
-import { RegisterFormProps } from "@/types/components";
+import { FormProps } from "@/types/components";
 
-export default function RegisterForm({ isSubmitting }: RegisterFormProps) {
+export default function RegisterForm({ isSubmitting }: FormProps) {
     const { values, handleChange, handleSubmit } = useFormikContext<UserRegister>();
 
     return (

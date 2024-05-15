@@ -12,16 +12,19 @@ export default function Header() {
                 Cat Of The Week
             </Link>
             <nav className="flex items-center space-x-4">
-                <Link className="hover:text-[#93c5fd]" href="#">
+                <Link className="hover:text-[#93c5fd]" href="/add-cat">
+                    Add Cat
+                </Link>
+                <Link className="hover:text-[#93c5fd]" href="/vote">
                     Vote
                 </Link>
-                <Link className="hover:text-[#93c5fd]" href="#">
-                    Info
+                <Link className="hover:text-[#93c5fd]" href="/about">
+                    About
                 </Link>
                 <Link className="hover:text-[#93c5fd]" href="/register">
                     Register
                 </Link>
-                <Link className="hover:text-[#93c5fd]" href="#">
+                <Link className="hover:text-[#93c5fd]" href="/login">
                     Log In
                 </Link>
             </nav>

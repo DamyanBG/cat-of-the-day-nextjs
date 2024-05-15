@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 import { HOST_URL } from "@/utils/urls";
 import defaultCatPhoto from "@/public/images/default-cat.jpg"
-import { CatPostBodyValues, CatResponseValues } from "@/types/cat";
+import { CatPostBodyValues, CatResponseValues, GetCatVoteResponse } from "@/types/cat";
 
 type CatOfTheWeekResponse = {
     cat_of_the_day: string
@@ -36,8 +36,8 @@ export const postCat = async (catPostBody: CatPostBodyValues, token: string | un
     }
 }
 
-export const getCatForVote = async (token: string) => {
-    const response: AxiosResponse<CatOfTheWeekResponse>  = await axios.get<GetCatForVoteResponse>(`${HOST_URL}/vote`, {
+export const getCatForVote = async (token: string | undefined) => {
+    const response: AxiosResponse<GetCatVoteResponse>  = await axios.get(`${HOST_URL}/vote`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -46,3 +46,13 @@ export const getCatForVote = async (token: string) => {
     console.log(data)
     return data;
 }
+
+export const postCatVote = async (voteInfo: CatVote, token: string | undefined) => {
+    const response = await axios.post(`${HOST_URL}/vote`, voteInfo, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    console.log(response)
+}
+

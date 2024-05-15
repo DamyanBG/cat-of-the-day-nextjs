@@ -18,3 +18,7 @@ export type CatForVote = {
     pk: number;
     photo_url: string;
 };
+
+export interface GetCatVoteResponse extends CatForVote {
+    message?: string;
+}

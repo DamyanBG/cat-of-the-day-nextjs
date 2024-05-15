@@ -23,8 +23,8 @@ export default function VoteSection({ catImgSrc, onVote }: VoteSectionProps) {
     };
 
     return (
-        <main className="flex flex-col items-center justify-center h-screen bg-[#f0f8ff] dark:bg-[#1e90ff]">
-            <div className="max-w-md w-full space-y-6">
+        <main className="flex flex-col items-center justify-center min-h-screen bg-[#f0f8ff] dark:bg-[#1e90ff]">
+            <div className="max-w-2xl w-full space-y-6">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-[#1e90ff] dark:text-gray-50">
                         Voting Page
@@ -38,15 +38,15 @@ export default function VoteSection({ catImgSrc, onVote }: VoteSectionProps) {
                     <img
                         alt="Cat of the Week"
                         className="w-full h-auto object-cover"
-                        height="600"
+                        height="700"
                         src={catImgSrc}
                         style={{
                             aspectRatio: "800/600",
                             objectFit: "cover",
                         }}
-                        width="800"
+                        width="900"
                     />
-                    <div className="px-6 py-4 flex justify-center space-x-4">
+                    <div className="px-4 py-4 flex justify-center space-x-3">
                         <Button
                             className="flex-1 border-[#00bfff] text-[#00bfff] hover:bg-[#00bfff] hover:text-white"
                             variant="outline"

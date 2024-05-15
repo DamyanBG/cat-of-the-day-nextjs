@@ -1,0 +1,23 @@
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/BueKDwrGR8c
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+import Link from "next/link"
+
+export default function MustLogIn() {
+  return (
+    <section className="flex flex-col items-center justify-center bg-white py-12 px-4 md:px-6">
+      <div className="container mx-auto max-w-3xl text-center">
+        <h1 className="text-3xl font-bold text-[rgb(30,144,255)]">Vote</h1>
+        <p className="mt-4 text-lg text-[rgb(30,144,255)]/80">You must be logged in to vote for cats.</p>
+        <Link
+          className="mt-6 inline-flex items-center rounded-md bg-[rgb(30,144,255)] px-6 py-3 text-white transition-colors hover:bg-[rgb(0,90,140)] focus:outline-none focus:ring-2 focus:ring-[rgb(30,144,255)] focus:ring-offset-2"
+          href="#"
+        >
+          Log In
+        </Link>
+      </div>
+    </section>
+  )
+}

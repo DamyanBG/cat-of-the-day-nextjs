@@ -16,10 +16,11 @@ export interface UserConditionalLinkProps {
 }
 
 export interface CatFormWrapperProps {
-    photoDropZoneEl: JSX.Element;
+    photoSectionEl: JSX.Element;
     formEl: JSX.Element;
 }
 
 export interface CatPhotoUploadProps {
+    isUploading: boolean;
     onUpload: (file: File) => void;
 }

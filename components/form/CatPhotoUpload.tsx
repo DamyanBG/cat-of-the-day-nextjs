@@ -2,7 +2,10 @@ import { useRef } from "react";
 
 import { CatPhotoUploadProps } from "@/types/components";
 
-export default function CatPhotoUpload({ onUpload }: CatPhotoUploadProps) {
+export default function CatPhotoUpload({
+    isUploading,
+    onUpload,
+}: CatPhotoUploadProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,18 +21,18 @@ export default function CatPhotoUpload({ onUpload }: CatPhotoUploadProps) {
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        console.log(e)
+        console.log(e);
         const file = e.dataTransfer.files[0];
-        onUpload(file)
+        onUpload(file);
     };
 
     const handleDragEnter = (e) => {
         // console.log(e)
-    }
+    };
 
     const handleDragOver = (e) => {
-        e.preventDefault()
-    }
+        e.preventDefault();
+    };
 
     return (
         <div
@@ -39,17 +42,33 @@ export default function CatPhotoUpload({ onUpload }: CatPhotoUploadProps) {
             onClick={handleUploadClick}
             onDragOver={handleDragOver}
         >
-            <h2 className="text-xl font-semibold text-[#1e40af]">
-                Upload Photo
-            </h2>
-            <div className="flex h-64 w-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#93c5fd] p-6 text-gray-500 dark:border-[#1e40af] dark:text-gray-400">
-                <CloudUploadIcon className="h-12 w-12" />
-                <p>
-                    Drag and drop your cat's photo here, or click to select a
-                    file.
-                </p>
-                <input ref={fileInputRef} className="hidden" type="file" onChange={handleFileChange} />
-            </div>
+            {isUploading ? (
+                <div className="flex items-center justify-center">
+                    <div className="relative">
+                        <div className="h-24 w-24 rounded-full border-t-8 border-b-8 border-gray-200"></div>
+                        <div className="absolute top-0 left-0 h-24 w-24 rounded-full border-t-8 border-b-8 border-blue-500 animate-spin"></div>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <h2 className="text-xl font-semibold text-[#1e40af]">
+                        Upload Photo
+                    </h2>
+                    <div className="flex h-64 w-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#93c5fd] p-6 text-gray-500 dark:border-[#1e40af] dark:text-gray-400">
+                        <CloudUploadIcon className="h-12 w-12" />
+                        <p>
+                            Drag and drop your cat's photo here, or click to
+                            select a file.
+                        </p>
+                        <input
+                            ref={fileInputRef}
+                            className="hidden"
+                            type="file"
+                            onChange={handleFileChange}
+                        />
+                    </div>
+                </>
+            )}
         </div>
     );
 }

@@ -1,12 +1,12 @@
 "use client";
 
+import { useContext, useState } from "react";
 import { Formik } from "formik";
 
 import CatForm from "@/components/form/CatForm";
 import { AddCatValues, CatPostBodyValues } from "@/types/cat";
 import CatFormWrapper from "@/components/form/CatFormWrapper";
 import CatPhotoUpload from "@/components/form/CatPhotoUpload";
-import { useContext, useState } from "react";
 import { UserContext } from "@/context/UserProvider";
 import { postCat } from "@/api/catApi";
 import { ImageInfoValues } from "@/types/imageTypes";
@@ -21,12 +21,13 @@ const initialFormValues: AddCatValues = {
 };
 
 const initialImageValues: ImageInfoValues = {
-    id: "",
+    pk: "",
     url: "",
 };
 
 export default function AddCat() {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
     const [imageInfo, setImageInfo] = useState(initialImageValues);
     const { user } = useContext(UserContext);
 
@@ -38,7 +39,7 @@ export default function AddCat() {
             birth_date: catValues.birth_date,
             color: catValues.color,
             microchip: catValues.microchip,
-            photo_id: imageInfo.id,
+            photo_id: imageInfo.pk,
         };
         try {
             const response = await postCat(catPostBody, user.token);
@@ -51,11 +52,12 @@ export default function AddCat() {
     };
 
     const handleSubmit = (values: AddCatValues) => {
-        if (!imageInfo.id) return;
+        if (!imageInfo.pk) return;
         createCat(values);
     };
 
     const handleUpload = (file: File) => {
+        setIsUploading(true);
         const reader = new FileReader();
         reader.onloadend = async () => {
             const photoData = reader.result;
@@ -65,14 +67,34 @@ export default function AddCat() {
                 setImageInfo(response.data);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setIsUploading(false);
             }
         };
         reader.readAsDataURL(file);
     };
 
+    const photoSectionEl = imageInfo.pk ? (
+        <div>
+            <img
+                alt="Cat of the Week"
+                className="mx-auto rounded-lg shadow-lg"
+                height={400}
+                src={imageInfo.url}
+                style={{
+                    aspectRatio: "600/400",
+                    objectFit: "cover",
+                }}
+                width={600}
+            />
+        </div>
+    ) : (
+        <CatPhotoUpload isUploading={isUploading} onUpload={handleUpload} />
+    );
+
     return (
         <CatFormWrapper
-            photoDropZoneEl={<CatPhotoUpload onUpload={handleUpload} />}
+            photoSectionEl={photoSectionEl}
             formEl={
                 <Formik
                     initialValues={initialFormValues}

@@ -1,4 +1,4 @@
 export type ImageInfoValues = {
-    pk: string;
+    pk: number;
     url: string;
 }

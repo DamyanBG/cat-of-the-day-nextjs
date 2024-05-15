@@ -22,7 +22,7 @@ export const getCatOfTheWeek = async (): Promise<string> => {
 export const postCat = async (catPostBody: CatPostBodyValues, token: string | undefined): Promise<AxiosResponse<CatResponseValues>> => {
     try {
         const response = await axios.post(
-            `${HOST_URL}/user/login`,
+            `${HOST_URL}/cat`,
             catPostBody, 
             {
                 headers: {

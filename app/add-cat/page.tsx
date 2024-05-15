@@ -21,7 +21,7 @@ const initialFormValues: AddCatValues = {
 };
 
 const initialImageValues: ImageInfoValues = {
-    pk: "",
+    pk: 0,
     url: "",
 };
 
@@ -39,7 +39,7 @@ export default function AddCat() {
             birth_date: catValues.birth_date,
             color: catValues.color,
             microchip: catValues.microchip,
-            photo_id: imageInfo.pk,
+            photo_pk: imageInfo.pk,
         };
         try {
             const response = await postCat(catPostBody, user.token);
@@ -52,7 +52,7 @@ export default function AddCat() {
     };
 
     const handleSubmit = (values: AddCatValues) => {
-        if (!imageInfo.pk) return;
+        if (!imageInfo.url) return;
         createCat(values);
     };
 
@@ -74,7 +74,7 @@ export default function AddCat() {
         reader.readAsDataURL(file);
     };
 
-    const photoSectionEl = imageInfo.pk ? (
+    const photoSectionEl = imageInfo.url ? (
         <div>
             <img
                 alt="Cat of the Week"

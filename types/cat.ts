@@ -7,7 +7,7 @@ export type AddCatValues = {
 };
 
 export type CatPostBodyValues = AddCatValues & {
-    photo_id: string;
+    photo_pk: number;
 }
 
 export type CatResponseValues = CatPostBodyValues & {

@@ -19,3 +19,7 @@ export interface CatFormWrapperProps {
     photoDropZoneEl: JSX.Element;
     formEl: JSX.Element;
 }
+
+export interface CatPhotoUploadProps {
+    onUpload: (file: File) => void;
+}

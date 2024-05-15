@@ -1,6 +1,44 @@
-export default function CatPhotoUpload() {
+import { useRef } from "react";
+
+import { CatPhotoUploadProps } from "@/types/components";
+
+export default function CatPhotoUpload({ onUpload }: CatPhotoUploadProps) {
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            onUpload(file);
+        }
+    };
+
+    const handleUploadClick = () => {
+        if (fileInputRef.current) fileInputRef.current.click();
+    };
+
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        console.log(e)
+        const file = e.dataTransfer.files[0];
+        onUpload(file)
+    };
+
+    const handleDragEnter = (e) => {
+        // console.log(e)
+    }
+
+    const handleDragOver = (e) => {
+        e.preventDefault()
+    }
+
     return (
-        <div className="flex flex-col items-center justify-center gap-4 rounded-lg border border-[#93c5fd] bg-[#eff6ff] p-6 shadow-sm dark:border-[#1e40af] dark:bg-[#1e40af]/10">
+        <div
+            className="flex flex-col items-center justify-center gap-4 rounded-lg border border-[#93c5fd] bg-[#eff6ff] p-6 shadow-sm dark:border-[#1e40af] dark:bg-[#1e40af]/10 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+            onDrop={handleDrop}
+            onDragEnter={handleDragEnter}
+            onClick={handleUploadClick}
+            onDragOver={handleDragOver}
+        >
             <h2 className="text-xl font-semibold text-[#1e40af]">
                 Upload Photo
             </h2>
@@ -10,7 +48,7 @@ export default function CatPhotoUpload() {
                     Drag and drop your cat's photo here, or click to select a
                     file.
                 </p>
-                <input className="hidden" type="file" />
+                <input ref={fileInputRef} className="hidden" type="file" onChange={handleFileChange} />
             </div>
         </div>
     );

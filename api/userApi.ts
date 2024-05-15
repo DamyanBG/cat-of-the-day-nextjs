@@ -5,10 +5,9 @@ import { UserPost, UserResponse } from '@/types/user';
 
 export const postUser = async (user: UserPost): Promise<AxiosResponse<UserResponse>> => {
     try {
-        const response = await axios.post(`${HOST_URL}`, user)
+        const response = await axios.post(`${HOST_URL}/user/register`, user)
         return response
     } catch (error) {
-        console.error('Error posting user:', error)
         throw error
     }
 }

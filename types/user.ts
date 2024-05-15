@@ -5,11 +5,11 @@ export type UserPost = {
     password: string;
 }
 
-export type UserRegister = UserPost &{
+export type UserRegister = UserPost & {
     confirmPassword: string;
 }
 
-export type UserResponse = UserPost &{
+export type UserResponse = UserPost & {
     token: string;
     id: string;
 }

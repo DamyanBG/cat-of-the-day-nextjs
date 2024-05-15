@@ -2,14 +2,13 @@
 
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { Field, Form, Formik } from "formik";
+import { Formik } from "formik";
 
 import RegisterForm from "@/components/form/RegisterForm";
-import { UserRegister } from "@/types/user";
-import { HOST_URL } from "@/utils/urls";
+import { UserPost, UserRegister } from "@/types/user";
 import { UserContext } from "@/context/UserProvider";
 import FormWrapper from "@/components/form/FormWrapper";
+import { postUser } from "@/api/userApi";
 
 const initialRegisterState: UserRegister = {
     first_name: "",
@@ -24,35 +23,32 @@ export default function Register() {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const postUser = (values: UserRegister) => {
+    const createUser = async (values: UserRegister) => {
         setIsSubmitting(true);
-        fetch(`${HOST_URL}/user/register`, {
-            method: "POST",
-            body: JSON.stringify(values),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((resp) => {
-                if (resp.status !== 201) {
-                    alert("error!");
-                }
-                return resp.json();
-            })
-            .then((json) => {
-                console.log(json);
-                if (json.token) {
-                    localStorage.setItem("user", JSON.stringify(json));
-                    setUser(json);
-                    router.push("/");
-                }
-            })
-            .finally(() => setIsSubmitting(false));
+        const postBody: UserPost = {
+            first_name: values.first_name,
+            last_name: values.last_name,
+            email: values.email,
+            password: values.password,
+        }
+        try {
+            const response = await postUser(postBody)
+            const data = response.data
+            if (data.token) {
+                localStorage.setItem("user", JSON.stringify(data));
+                setUser(data);
+                router.push("/");
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIsSubmitting(false)
+        }
     };
 
     const handleOnSubmit = (values: UserRegister) => {
         console.log(values)
-        postUser(values);
+        createUser(values);
     };
 
 

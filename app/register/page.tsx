@@ -6,12 +6,15 @@ import Link from "next/link";
 import { Field, Form, Formik } from "formik";
 
 import RegisterForm from "@/components/form/RegisterForm";
+import { UserRegister } from "@/types/user";
+import { HOST_URL } from "@/utils/urls";
 
-const initialRegisterState: RegisterFormValues = {
+const initialRegisterState: UserRegister = {
     first_name: "",
     last_name: "",
     email: "",
     password: "",
+    confirmPassword: "",
 };
 
 export default function Register() {
@@ -19,7 +22,7 @@ export default function Register() {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const postUser = (values: RegisterFormValues) => {
+    const postUser = (values: UserRegister) => {
         setIsSubmitting(true);
         fetch(`${HOST_URL}/user/register`, {
             method: "POST",
@@ -45,7 +48,7 @@ export default function Register() {
             .finally(() => setIsSubmitting(false));
     };
 
-    const handleOnSubmit = (values: RegisterFormValues) => {
+    const handleOnSubmit = (values: UserRegister) => {
         postUser(values);
     };
 

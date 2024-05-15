@@ -8,8 +8,13 @@ export type AddCatValues = {
 
 export type CatPostBodyValues = AddCatValues & {
     photo_pk: number;
-}
+};
 
 export type CatResponseValues = CatPostBodyValues & {
-    id: string
-}
+    pk: string;
+};
+
+export type CatForVote = {
+    pk: number;
+    photo_url: string;
+};

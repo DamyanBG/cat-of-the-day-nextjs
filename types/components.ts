@@ -1,3 +1,5 @@
+import { Vote } from "./cat";
+
 export interface FormWrapperProps {
     children: JSX.Element;
     title: string;
@@ -23,4 +25,9 @@ export interface CatFormWrapperProps {
 export interface CatPhotoUploadProps {
     isUploading: boolean;
     onUpload: (file: File) => void;
+}
+
+export interface VoteSectionProps {
+    catImgSrc: string;
+    onVote: (vote: Vote) => void;
 }

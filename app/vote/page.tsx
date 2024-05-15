@@ -4,15 +4,15 @@ import { useContext, useEffect, useState } from "react";
 
 import VoteSection from "@/components/VoteSection";
 import { UserContext } from "@/context/UserProvider";
-import { CatForVote } from "@/types/cat";
-import { getCatForVote } from "@/api/catApi";
+import { CatForVote, CatVote, Vote } from "@/types/cat";
+import { getCatForVote, postCatVote } from "@/api/catApi";
 
 const initialState: CatForVote = {
     pk: 0,
     photo_url: "",
 };
 
-export default function Vote() {
+export default function VotePage() {
     const { user } = useContext(UserContext);
     const [catForVote, setCatForVote] = useState<CatForVote>(initialState);
     const [areNoMoreCats, setAreNoMoreCats] = useState<boolean>(false);
@@ -33,16 +33,16 @@ export default function Vote() {
         }
     }, [user.token]);
 
-    const handleOnPostVote = async (vote: Vote) => {
+    const handleVote = async (vote: Vote) => {
         setIsLoading(true);
-        const voteBody: CatVoteBody = {
+        const voteBody: CatVote = {
             pk: catForVote.pk,
             vote: vote,
         };
-        await postVote(user.token, voteBody);
+        await postCatVote(voteBody, user.token,);
         await loadCatForVote();
         setIsLoading(false);
     };
 
-    return <VoteSection />;
+    return <VoteSection catImgSrc={catForVote.photo_url} onVote={handleVote} />;
 }

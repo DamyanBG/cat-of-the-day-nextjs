@@ -1,58 +1,69 @@
 import axios, { AxiosResponse } from "axios";
 
 import { HOST_URL } from "@/utils/urls";
-import defaultCatPhoto from "@/public/images/default-cat.jpg"
-import { CatPostBodyValues, CatResponseValues, GetCatVoteResponse } from "@/types/cat";
+import defaultCatPhoto from "@/public/images/default-cat.jpg";
+import {
+    CatPostBodyValues,
+    CatResponseValues,
+    CatVote,
+    GetCatVoteResponse,
+} from "@/types/cat";
 
 type CatOfTheWeekResponse = {
-    cat_of_the_day: string
-}
+    cat_of_the_day: string;
+};
 
 export const getCatOfTheWeek = async (): Promise<string> => {
-    let photoUrl: string
+    let photoUrl: string;
     try {
-        const response: AxiosResponse<CatOfTheWeekResponse> = await axios.get(`${HOST_URL}/cat-of-the-week-photo`)
-        photoUrl = response.data.cat_of_the_day
+        const response: AxiosResponse<CatOfTheWeekResponse> = await axios.get(
+            `${HOST_URL}/cat-of-the-week-photo`
+        );
+        photoUrl = response.data.cat_of_the_day;
     } catch (error) {
-        photoUrl = defaultCatPhoto.src
+        photoUrl = defaultCatPhoto.src;
     }
-    return photoUrl
-}
+    return photoUrl;
+};
 
-export const postCat = async (catPostBody: CatPostBodyValues, token: string | undefined): Promise<AxiosResponse<CatResponseValues>> => {
+export const postCat = async (
+    catPostBody: CatPostBodyValues,
+    token: string | undefined
+): Promise<AxiosResponse<CatResponseValues>> => {
     try {
-        const response = await axios.post(
-            `${HOST_URL}/cat`,
-            catPostBody, 
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }
-        )
-        return response
+        const response = await axios.post(`${HOST_URL}/cat`, catPostBody, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return response;
     } catch (error) {
-        throw error
+        throw error;
     }
-}
+};
 
 export const getCatForVote = async (token: string | undefined) => {
-    const response: AxiosResponse<GetCatVoteResponse>  = await axios.get(`${HOST_URL}/vote`, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
+    const response: AxiosResponse<GetCatVoteResponse> = await axios.get(
+        `${HOST_URL}/vote`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
     const { data } = response;
-    console.log(data)
+    console.log(data);
     return data;
-}
+};
 
-export const postCatVote = async (voteInfo: CatVote, token: string | undefined) => {
+export const postCatVote = async (
+    voteInfo: CatVote,
+    token: string | undefined
+) => {
     const response = await axios.post(`${HOST_URL}/vote`, voteInfo, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    console.log(response)
-}
-
+    console.log(response);
+};

@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+import { getCatOfTheWeek } from "@/api/catApi";
+
+export default async function Home() {
+    const catOfTheDayImgSrc = await getCatOfTheWeek()
+
     return (
         <main className="bg-[#f3f4f6] py-12 dark:bg-[#1f2937]">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,7 +15,7 @@ export default function Home() {
                             alt="Cat of the Week"
                             className="mx-auto rounded-lg shadow-lg"
                             height={400}
-                            src="/placeholder.svg"
+                            src={catOfTheDayImgSrc}
                             style={{
                                 aspectRatio: "600/400",
                                 objectFit: "cover",

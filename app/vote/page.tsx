@@ -11,12 +11,12 @@ const initialState: CatForVote = {
     photo_url: "",
 };
 
-export default function AddCat() {
+export default function Vote() {
     const { user } = useContext(UserContext);
     const [catForVote, setCatForVote] = useState<CatForVote>(initialState);
 
     const loadCatForVote = async () => {
-
+        
     }
 
     useEffect(() => {

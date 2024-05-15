@@ -35,3 +35,14 @@ export const postCat = async (catPostBody: CatPostBodyValues, token: string | un
         throw error
     }
 }
+
+export const getCatForVote = async (token: string) => {
+    const response: AxiosResponse<CatOfTheWeekResponse>  = await axios.get<GetCatForVoteResponse>(`${HOST_URL}/vote`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    const { data } = response;
+    console.log(data)
+    return data;
+}

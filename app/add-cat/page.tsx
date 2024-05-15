@@ -11,6 +11,7 @@ import { UserContext } from "@/context/UserProvider";
 import { postCat } from "@/api/catApi";
 import { ImageInfoValues } from "@/types/imageTypes";
 import { postImage } from "@/api/imageApi";
+import MustLogIn from "@/components/MustLogIn";
 
 const initialFormValues: AddCatValues = {
     name: "",
@@ -91,6 +92,10 @@ export default function AddCat() {
     ) : (
         <CatPhotoUpload isUploading={isUploading} onUpload={handleUpload} />
     );
+
+    if (!user.token) {
+        return <MustLogIn title="Add Cat" text="You must be logged in to add cat." />
+    }
 
     return (
         <CatFormWrapper

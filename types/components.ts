@@ -31,3 +31,8 @@ export interface VoteSectionProps {
     catImgSrc: string;
     onVote: (vote: Vote) => void;
 }
+
+export interface MustLogInProps {
+    title: string;
+    text: string;
+}

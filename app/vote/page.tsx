@@ -6,6 +6,8 @@ import VoteSection from "@/components/VoteSection";
 import { UserContext } from "@/context/UserProvider";
 import { CatForVote, CatVote, Vote } from "@/types/cat";
 import { getCatForVote, postCatVote } from "@/api/catApi";
+import NoMoreCats from "@/components/NoMoreCats";
+import MustLogIn from "@/components/MustLogIn";
 
 const initialState: CatForVote = {
     pk: 0,
@@ -43,6 +45,14 @@ export default function VotePage() {
         await loadCatForVote();
         setIsLoading(false);
     };
+
+    if (!user.token) {
+        return <MustLogIn title="Vote" text="You must be logged in to vote for cats." />
+    }
+
+    if (areNoMoreCats) {
+        return <NoMoreCats />
+    }
 
     return <VoteSection catImgSrc={catForVote.photo_url} onVote={handleVote} />;
 }

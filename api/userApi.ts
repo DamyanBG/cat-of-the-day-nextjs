@@ -7,7 +7,7 @@ export const postUser = async (
     user: UserPost
 ): Promise<AxiosResponse<UserResponse>> => {
     try {
-        const response = await axios.post(`${HOST_URL}/user/register`, user);
+        const response = await axios.post(`${HOST_URL}/users/register`, user);
         return response;
     } catch (error) {
         throw error;
@@ -19,7 +19,7 @@ export const postLogInUser = async (
 ): Promise<AxiosResponse<UserResponse>> => {
     try {
         const response = await axios.post(
-            `${HOST_URL}/user/login`,
+            `${HOST_URL}/users/login`,
             logInBody
         );
         return response;

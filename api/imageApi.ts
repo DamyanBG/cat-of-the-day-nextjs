@@ -8,10 +8,10 @@ export const postImage = async (
     token: string | undefined
 ): Promise<AxiosResponse<ImageInfoValues>> => {
     const photoPostBody = {
-        image_base64: photoData,
+        photo_base64: photoData,
     };
     try {
-        const response = await axios.post(`${HOST_URL}/image`, photoPostBody, {
+        const response = await axios.post(`${HOST_URL}/images/upload`, photoPostBody, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

@@ -34,10 +34,15 @@ export default function Register() {
         try {
             const response = await postUser(postBody)
             const data = response.data
+            console.log(data)
             if (data.token) {
                 localStorage.setItem("user", JSON.stringify(data));
                 setUser(data);
                 router.push("/");
+            } else if (data.id) {
+                router.push("/login")
+            } else {
+                throw Error("Bad request!")
             }
         } catch (error) {
             console.error(error)

@@ -1,6 +1,7 @@
 "use client";
 
 import { useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Formik } from "formik";
 
 import CatForm from "@/components/form/CatForm";
@@ -22,8 +23,8 @@ const initialFormValues: AddCatValues = {
 };
 
 const initialImageValues: ImageInfoValues = {
-    pk: 0,
-    url: "",
+    id: "0",
+    image_url: "",
 };
 
 export default function AddCat() {
@@ -31,6 +32,7 @@ export default function AddCat() {
     const [isUploading, setIsUploading] = useState(false);
     const [imageInfo, setImageInfo] = useState(initialImageValues);
     const { user } = useContext(UserContext);
+    const router = useRouter();
 
     const createCat = async (catValues: AddCatValues) => {
         setIsSubmitting(true);
@@ -40,11 +42,12 @@ export default function AddCat() {
             birth_date: catValues.birth_date,
             color: catValues.color,
             microchip: catValues.microchip,
-            photo_pk: imageInfo.pk,
+            photo_id: imageInfo.id,
         };
         try {
             const response = await postCat(catPostBody, user.token);
             console.log(response.data);
+            router.push("/")
         } catch (error) {
             console.error(error);
         } finally {
@@ -53,7 +56,7 @@ export default function AddCat() {
     };
 
     const handleSubmit = (values: AddCatValues) => {
-        if (!imageInfo.url) return;
+        if (!imageInfo.image_url) return;
         createCat(values);
     };
 
@@ -75,13 +78,13 @@ export default function AddCat() {
         reader.readAsDataURL(file);
     };
 
-    const photoSectionEl = imageInfo.url ? (
+    const photoSectionEl = imageInfo.image_url ? (
         <div>
             <img
                 alt="Cat of the Week"
                 className="mx-auto rounded-lg shadow-lg"
                 height={400}
-                src={imageInfo.url}
+                src={imageInfo.image_url}
                 style={{
                     aspectRatio: "600/400",
                     objectFit: "cover",

@@ -31,7 +31,7 @@ export const postCat = async (
     token: string | undefined
 ): Promise<AxiosResponse<CatResponseValues>> => {
     try {
-        const response = await axios.post(`${HOST_URL}/cat`, catPostBody, {
+        const response = await axios.post(`${HOST_URL}/cats/create`, catPostBody, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -44,7 +44,7 @@ export const postCat = async (
 
 export const getCatForVote = async (token: string | undefined) => {
     const response: AxiosResponse<GetCatVoteResponse> = await axios.get(
-        `${HOST_URL}/vote`,
+        `${HOST_URL}/cats/cat-for-vote`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,

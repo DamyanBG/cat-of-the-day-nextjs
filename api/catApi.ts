@@ -65,5 +65,5 @@ export const postCatVote = async (
             Authorization: `Bearer ${token}`,
         },
     });
-    console.log(response);
+    console.log(response.data);
 };

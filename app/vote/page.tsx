@@ -10,7 +10,7 @@ import NoMoreCats from "@/components/NoMoreCats";
 import MustLogIn from "@/components/MustLogIn";
 
 const initialState: CatForVote = {
-    id: 0,
+    id: "",
     photo_url: "",
 };
 
@@ -38,7 +38,7 @@ export default function VotePage() {
     const handleVote = async (vote: Vote) => {
         setIsLoading(true);
         const voteBody: CatVote = {
-            id: catForVote.id,
+            cat_id: catForVote.id,
             vote: vote,
         };
         await postCatVote(voteBody, user.token,);

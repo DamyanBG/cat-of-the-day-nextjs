@@ -15,7 +15,7 @@ export type CatResponseValues = CatPostBodyValues & {
 };
 
 export type CatForVote = {
-    id: number;
+    id: string;
     photo_url: string;
 };
 
@@ -24,7 +24,7 @@ export interface GetCatVoteResponse extends CatForVote {
 }
 
 export type CatVote = {
-    id: number;
+    cat_id: string;
     vote: Vote;
 };
 

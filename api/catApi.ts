@@ -11,15 +11,16 @@ import {
 
 type CatOfTheWeekResponse = {
     cat_of_the_day: string;
+    image_url: string;
 };
 
 export const getCatOfTheWeek = async (): Promise<string> => {
     let photoUrl: string;
     try {
         const response: AxiosResponse<CatOfTheWeekResponse> = await axios.get(
-            `${HOST_URL}/cat-of-the-week-photo`
+            `${HOST_URL}/cats/cat-of-the-week`
         );
-        photoUrl = response.data.cat_of_the_day;
+        photoUrl = response.data.image_url;
     } catch (error) {
         photoUrl = defaultCatPhoto.src;
     }

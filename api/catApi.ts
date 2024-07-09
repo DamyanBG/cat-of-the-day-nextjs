@@ -7,6 +7,7 @@ import {
     CatResponseValues,
     CatVote,
     GetCatVoteResponse,
+    MyCatType,
 } from "@/types/cat";
 
 type CatOfTheWeekResponse = {
@@ -68,3 +69,14 @@ export const postCatVote = async (
     });
     console.log(response.data);
 };
+
+
+export const getMyCat = async (token: string | undefined) => {
+    const response: AxiosResponse<MyCatType>  = await axios.get(`${HOST_URL}/cats/user-cat`,  {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+    const { data } = response
+    return data
+}

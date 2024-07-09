@@ -1,38 +1,42 @@
-import { Vote } from "./cat";
+import { Vote, MyCatType } from "./cat";
 
 export interface FormWrapperProps {
-    children: JSX.Element;
-    title: string;
-    text: string;
+  children: JSX.Element;
+  title: string;
+  text: string;
 }
 
 export interface FormProps {
-    isSubmitting: boolean;
+  isSubmitting: boolean;
 }
 
 export interface UserConditionalLinkProps {
-    falsyHref: string;
-    falsyText: string;
-    truthyHref: string;
-    truthyText: string;
+  falsyHref: string;
+  falsyText: string;
+  truthyHref: string;
+  truthyText: string;
 }
 
 export interface CatFormWrapperProps {
-    photoSectionEl: JSX.Element;
-    formEl: JSX.Element;
+  photoSectionEl: JSX.Element;
+  formEl: JSX.Element;
 }
 
 export interface CatPhotoUploadProps {
-    isUploading: boolean;
-    onUpload: (file: File) => void;
+  isUploading: boolean;
+  onUpload: (file: File) => void;
 }
 
 export interface VoteSectionProps {
-    catImgSrc: string;
-    onVote: (vote: Vote) => void;
+  catImgSrc: string;
+  onVote: (vote: Vote) => void;
 }
 
 export interface MustLogInProps {
-    title: string;
-    text: string;
+  title: string;
+  text: string;
+}
+
+export interface MyCatProps {
+  myCat: MyCatType
 }

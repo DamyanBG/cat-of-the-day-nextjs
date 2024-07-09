@@ -47,8 +47,10 @@ export default function AddCat() {
     };
     try {
       const response = await postCat(catPostBody, user.token);
-      console.log(response.data);
-      router.push("/");
+      if (response.status !== 201) {
+        throw Error()
+      }
+      router.push("/my-cat");
     } catch (error) {
       console.error(error);
     } finally {
@@ -68,7 +70,9 @@ export default function AddCat() {
       const photoData = reader.result;
       try {
         const response = await postImage(photoData, user.token);
-        console.log(response.data);
+        if (response.status !== 201) {
+          throw Error()
+        }
         setImageInfo(response.data);
       } catch (error) {
         console.error(error);

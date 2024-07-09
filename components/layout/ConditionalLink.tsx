@@ -11,14 +11,15 @@ const UserConditionalLink = ({
     falsyText,
     truthyHref,
     truthyText,
+    userConditionKey = "token",
 }: UserConditionalLinkProps) => {
     const { user, setUser } = useContext(UserContext);
 
-    const linkHref = user.token 
+    const linkHref = user[userConditionKey]
         ? truthyHref 
         : falsyHref;
 
-    const linkText = user.token 
+    const linkText = user[userConditionKey]
         ? truthyText 
         : falsyText;
 

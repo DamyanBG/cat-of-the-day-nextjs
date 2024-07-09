@@ -15,6 +15,7 @@ export interface UserConditionalLinkProps {
   falsyText: string;
   truthyHref: string;
   truthyText: string;
+  userConditionKey?: string;
 }
 
 export interface CatFormWrapperProps {

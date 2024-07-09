@@ -32,7 +32,7 @@ export default function AddCat() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [imageInfo, setImageInfo] = useState(initialImageValues);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const router = useRouter();
 
   const createCat = async (catValues: AddCatValues) => {
@@ -50,6 +50,7 @@ export default function AddCat() {
       if (response.status !== 201) {
         throw Error()
       }
+      setUser({ ...user, has_uploaded_cat: true })
       router.push("/my-cat");
     } catch (error) {
       console.error(error);

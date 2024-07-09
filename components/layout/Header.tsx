@@ -10,9 +10,13 @@ import UserConditionalLink from "./ConditionalLink";
 
 const Links = () => (
     <>
-        <Link className="hover:underline" href="/add-cat">
-            Add Cat
-        </Link>
+        <UserConditionalLink
+            falsyHref="/add-cat"
+            falsyText="Add Cat"
+            truthyHref="/my-cat"
+            truthyText="My Cat"
+            userConditionKey="has_uploaded_cat"
+        />
         <Link className="hover:underline" href="/vote">
             Vote
         </Link>

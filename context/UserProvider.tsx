@@ -4,7 +4,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 type Props = { children: React.ReactNode }
 
-interface User {
+type User = {
   name?: string;
   email?: string;
   user_pk?: number;

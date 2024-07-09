@@ -9,7 +9,7 @@ import { MustLogInProps } from "@/types/components"
 
 export default function MustLogIn({ title, text }: MustLogInProps) {
   return (
-    <section className="min-h-[70vh] flex flex-col items-center justify-center bg-white py-12 px-4 md:px-6">
+    <section className="min-h-[70vh] flex flex-col items-center justify-center bg-white py-12 px-4 md:px-6 min-h-[77vh]">
       <div className="container mx-auto max-w-3xl text-center">
         <h1 className="text-3xl font-bold text-[rgb(30,144,255)]">{title}</h1>
         <p className="mt-4 text-lg text-[rgb(30,144,255)]/80">{text}</p>

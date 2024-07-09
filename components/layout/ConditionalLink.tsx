@@ -12,7 +12,7 @@ const UserConditionalLink = ({
     truthyHref,
     truthyText,
 }: UserConditionalLinkProps) => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     const linkHref = user.token 
         ? truthyHref 
@@ -22,8 +22,15 @@ const UserConditionalLink = ({
         ? truthyText 
         : falsyText;
 
+    const handleLogOut = () => {
+        if (truthyText === "Log Out") {
+            setUser({})
+            localStorage.removeItem("user")
+        }
+    }
+
     return (
-        <Link className="hover:underline" href={linkHref}>
+        <Link className="hover:underline" href={linkHref} onClick={handleLogOut}>
             {linkText}
         </Link>
     );

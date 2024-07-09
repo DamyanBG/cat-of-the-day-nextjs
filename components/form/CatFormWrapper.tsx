@@ -1,7 +1,7 @@
 import { CatFormWrapperProps } from "@/types/components";
 
 const CatFormWrapper = ({ photoSectionEl, formEl }: CatFormWrapperProps) => (
-    <main className="flex flex-col items-center justify-center gap-8 px-4 py-8 md:px-6 lg:py-12">
+    <main className="flex flex-col items-center justify-center gap-8 px-4 py-8 md:px-6 lg:py-12 min-h-[77vh]">
         <header className="text-center">
             <h1 className="text-3xl font-bold tracking-tighter text-[#1e40af] sm:text-4xl md:text-5xl">
                 Add Your Cat

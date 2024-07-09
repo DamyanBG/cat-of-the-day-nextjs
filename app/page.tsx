@@ -7,7 +7,7 @@ export default async function Home() {
     const catOfTheDayImgSrc = await getCatOfTheWeek()
 
     return (
-        <main className="bg-[#f3f4f6] py-12 dark:bg-[#1f2937]">
+        <main className="bg-[#f3f4f6] py-12 dark:bg-[#1f2937] min-h-[77vh]">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                     <div>

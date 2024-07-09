@@ -5,7 +5,7 @@
  */
 export default function About() {
   return (
-    <main className="px-4 py-12 md:px-6 lg:py-16 bg-[#f0f8ff] dark:bg-[#1e293b]">
+    <main className="px-4 py-12 md:px-6 lg:py-16 bg-[#f0f8ff] dark:bg-[#1e293b] min-h-[77vh]">
       <div className="mx-auto max-w-4xl space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-[#4169e1] dark:text-[#add8e6]">

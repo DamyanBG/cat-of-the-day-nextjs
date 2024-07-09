@@ -28,7 +28,7 @@ const Links = () => (
         <UserConditionalLink
             falsyHref="/login"
             falsyText="Log In"
-            truthyHref="/logout"
+            truthyHref="/"
             truthyText="Log Out"
         />
     </>
